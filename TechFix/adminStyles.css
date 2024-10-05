@@ -59,14 +59,14 @@ button, .nav__link {
     transition: color 0.3s ease;
 }
 
-    button:hover {
+button:hover {
         color: var(--white-color-lighten);
         background: transparent;
-    }
+ }
 
-    button:focus {
+button:focus {
         outline: none;
-    }
+}
 
 
 .nav__link {
@@ -106,9 +106,9 @@ button, .nav__link {
     transition: color 0.3s ease;
 }
 
-    .nav__link:hover {
-        color: var(--white-color-lighten);
-    }
+.nav__link:hover {
+        color: var(--white-color-light);
+}
 
 .login {
     background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
@@ -118,15 +118,15 @@ button, .nav__link {
     transition: background 0.3s ease, transform 0.2s ease;
     text-decoration: none;
 }
-
-    .login:hover {
+.login:hover {
         background: linear-gradient(135deg, #000dff 0%, #6b73ff 100%);
         transform: scale(1.05);
-    }
 
-    .login:active {
+}
+
+.login:active {
         transform: scale(0.98);
-    }
+}
 
 @media screen and (max-width: 768px) {
     .login {
@@ -147,9 +147,9 @@ button, .nav__link {
         transition: top .4s, opacity .3s;
     }
 
-        .nav__menu::-webkit-scrollbar {
+     .nav__menu::-webkit-scrollbar {
             width: 0;
-        }
+     }
 
     .nav__list {
         flex-direction: column;

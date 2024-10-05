@@ -14,18 +14,14 @@
                 <nav class="nav container">
                     <div class="nav__menu">
                         <ul class="nav__list">
-                            <li>
-                                <asp:Button ID="btnaddCategories" runat="server" class="nav__link" Text="Add Categories" OnClick="btnaddCategories_Click" />
-                            </li>
-                            <li><a href="welcome.php" class="nav__link">Menu</a></li>
-                            <li><a href="welcome.php" class="nav__link">Live</a></li>
-                            <li><a href="welcome.php" class="nav__link">Orders</a></li>
-                            <li><a href="welcome.php" class="nav__link">Reservation</a></li>
-                            <li><a href="about.php" class="nav__link">About Us</a></li>
-                            <li><a href="welcome.php" class="nav__link">Profile</a></li>
-                            <li>
-                                <a href="welcome.php" class="login" id="loginbutton">Log In</a>
-                            </li>
+                            <li><asp:Button ID="btnaddCategories" runat="server" class="nav__link" Text="Add Categories" OnClick="btnaddCategories_Click" /></li>
+                            <li><asp:Button ID="btnAddProducts" runat="server" class="nav__link" Text="Add Products" OnClick="btnaddCategories_Click" /> </li>
+                            <li> <asp:Button ID="btnquotation" runat="server" class="nav__link" Text="Quotations" OnClick="btnaddCategories_Click" /> </li>
+                            <li><asp:Button ID="btnOrders" runat="server" class="nav__link" Text="Orders" OnClick="btnaddCategories_Click" />  </li>
+                            <li> <asp:Button ID="btnStock" runat="server" class="nav__link" Text="Stock Orders" OnClick="btnaddCategories_Click" /></li>
+                            <li><asp:Button ID="btnCus" runat="server" class="nav__link" Text="Customers" OnClick="btnaddCategories_Click" /> </li>
+
+                            <li> <a href="welcome.php" class="login" id="loginbutton">Log Out</a> </li>
                         </ul>
                     </div>
                 </nav>
