@@ -1,0 +1,166 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+:root {
+    --header-height: 3.5rem;
+    --white-color: hsl(44, 100%, 50%);
+    --white-color-light: hsl(0, 0%, 100%);
+    --white-color-lighten: hsl(220, 20%, 18%);
+    --body-color: #0C243C;
+    --body-font: "Montserrat", sans-serif;
+    --normal-font-size: .938rem;
+    --font-regular: 400;
+    --font-semi-bold: 600;
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+body {
+    font-family: var(--body-font, "Montserrat", sans-serif);
+    background-color: aliceblue;
+    margin: 0;
+    padding: 0;
+    color: var(--white-color-light);
+    background-color: var(--body-color);
+    background-image: url('Images/admin background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+.container {
+    max-width: 1120px;
+    margin-inline: auto;
+    padding: 1.5rem;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--body-color);
+    box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+    z-index: var(--z-fixed);
+    border-radius: 20px;
+    padding: 0 1.5rem;
+}
+
+
+button, .nav__link {
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-weight: var(--font-semi-bold);
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+    button:hover {
+        color: var(--white-color-lighten);
+        background: transparent;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+
+.nav__link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: var(--white-color);
+    font-weight: var(--font-semi-bold);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    height: var(--header-height);
+    align-items: center;
+}
+
+.nav__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav__link {
+    color: var(--white-color);
+    font-weight: var(--font-semi-bold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .nav__link:hover {
+        color: var(--white-color-lighten);
+    }
+
+.login {
+    background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+    color: white;
+    padding: 0.75em 1.5em;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+    .login:hover {
+        background: linear-gradient(135deg, #000dff 0%, #6b73ff 100%);
+        transform: scale(1.05);
+    }
+
+    .login:active {
+        transform: scale(0.98);
+    }
+
+@media screen and (max-width: 768px) {
+    .login {
+        padding: 0.5em 1em;
+    }
+}
+
+@media screen and (max-width: 1118px) {
+    .nav__menu {
+        position: absolute;
+        left: 0;
+        top: var(--header-height);
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        overflow-y: auto;
+        pointer-events: none;
+        opacity: 0;
+        transition: top .4s, opacity .3s;
+    }
+
+        .nav__menu::-webkit-scrollbar {
+            width: 0;
+        }
+
+    .nav__list {
+        flex-direction: column;
+        background-color: var(--white-color);
+        padding-top: 1rem;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (min-width: 1118px) {
+    .nav__toggle {
+        display: none;
+    }
+}

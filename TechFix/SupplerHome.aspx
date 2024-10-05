@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupplerHome.aspx.cs" Inherits="TechFix.SupplerHome" %>
+﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupplerHome.aspx.cs" Inherits="TechFix.SupplerHome" %>
 
 <!DOCTYPE html>
 

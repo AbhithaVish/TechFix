@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="addcategories.aspx" />
     <Content Include="AdminHome.aspx" />
+    <Content Include="adminStyles.css" />
     <Content Include="LoginForm.aspx" />
     <Content Include="StyleSheet.css" />
     <Content Include="SupplerHome.aspx" />
