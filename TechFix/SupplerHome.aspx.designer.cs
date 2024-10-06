@@ -42,31 +42,22 @@ namespace TechFix
         protected global::System.Web.UI.WebControls.Button btnviewProducts;
 
         /// <summary>
-        /// btnquotation control.
+        /// btnOrders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnquotation;
+        protected global::System.Web.UI.WebControls.Button btnOrders;
 
         /// <summary>
-        /// Button1 control.
+        /// btnProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-
-        /// <summary>
-        /// btnStock control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStock;
+        protected global::System.Web.UI.WebControls.Button btnProfile;
 
         /// <summary>
         /// btnCus control.
