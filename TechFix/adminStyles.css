@@ -13,6 +13,11 @@
     --z-fixed: 100;
 }
 
+.content{
+
+    margin-top:300px;
+}
+
 body {
     font-family: var(--body-font, "Montserrat", sans-serif);
     background-color: aliceblue;

@@ -75,6 +75,7 @@
     <Content Include="SupplerHome.aspx" />
     <Content Include="supplierAddProducts.aspx" />
     <Content Include="SupplierLogin.aspx" />
+    <Content Include="SupplierViewProducts.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +121,13 @@
     </Compile>
     <Compile Include="SupplierLogin.aspx.designer.cs">
       <DependentUpon>SupplierLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierViewProducts.aspx.cs">
+      <DependentUpon>SupplierViewProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SupplierViewProducts.aspx.designer.cs">
+      <DependentUpon>SupplierViewProducts.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

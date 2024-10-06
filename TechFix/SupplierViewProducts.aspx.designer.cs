@@ -11,7 +11,7 @@ namespace TechFix
 {
 
 
-    public partial class SupplerHome
+    public partial class SupplierViewProducts
     {
 
         /// <summary>
@@ -76,5 +76,23 @@ namespace TechFix
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCus;
+
+        /// <summary>
+        /// lblText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblText;
+
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

@@ -4,19 +4,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Supplier Home Page</title>
+    <link href="adminStyles.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:Button ID="btnadd" runat="server" Text="Add products" OnClick="btnadd_Click" /><br />
-            <asp:Button ID="btnview" runat="server" Text="View Products" /><br />
-            <asp:Button ID="btnedit" runat="server" Text="Edit " /><br />
-            <asp:Button ID="btndelete" runat="server" Text="Delete" /><br />
-            <asp:Button ID="btnorders" runat="server" Text="Orders" /><br />
-            <asp:Button ID="btnstocks" runat="server" Text="Stocks" /><br />
 
-        </div>
+      <div>
+             <header class="header">
+                 <nav class="nav container">
+                     <div class="nav__menu">
+                         <ul class="nav__list">
+                             <li><asp:Button ID="btnAddProducts" runat="server" class="nav__link" Text="Add Products" OnClick="btnAddProducts_Click"  /> </li>
+                             <li> <asp:Button ID="btnviewProducts" runat="server" class="nav__link" Text="View Products" OnClick="btnviewProducts_Click"   /></li>
+                             <li> <asp:Button ID="btnquotation" runat="server" class="nav__link" Text="Quotations" /> </li>
+                             <li><asp:Button ID="Button1" runat="server" class="nav__link" Text="Orders"/>  </li>
+                             <li> <asp:Button ID="btnStock" runat="server" class="nav__link" Text="Stock Orders"  /></li>
+                             <li><asp:Button ID="btnCus" runat="server" class="nav__link" Text="Customers" /> </li>
+
+                             <li> <a href="welcome.php" class="login" id="loginbutton">Log Out</a> </li>
+                         </ul>
+                     </div>
+                 </nav>
+             </header>
+         </div>
     </form>
 </body>
 </html>

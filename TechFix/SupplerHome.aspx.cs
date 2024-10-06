@@ -13,10 +13,15 @@ namespace TechFix
         {
 
         }
-
-        protected void btnadd_Click(object sender, EventArgs e)
+        
+        protected void btnAddProducts_Click(object sender, EventArgs e)
         {
             Response.Redirect("supplierAddProducts.aspx");
+        }
+
+        protected void btnviewProducts_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SupplierViewProducts.aspx");
         }
     }
 }
