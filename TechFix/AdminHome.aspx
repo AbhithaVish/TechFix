@@ -19,11 +19,12 @@
                 <nav class="nav container">
                     <div class="nav__menu">
                         <ul class="nav__list">
-                            <li><asp:Button ID="btnaddCategories" runat="server" class="nav__link" Text="Order Management" OnClick="btnaddCategories_Click" /></li>
-                            <li><asp:Button ID="btnAddProducts" runat="server" class="nav__link" Text="Stock Management" /> </li>
-                            <li> <asp:Button ID="btnquotation" runat="server" class="nav__link" Text="Customer Management"  /> </li>
-                            <li><asp:Button ID="btnOrders" runat="server" class="nav__link" Text="Suppliers" />  </li>
-                            <li> <asp:Button ID="btnStock" runat="server" class="nav__link" Text="Categories"  /></li>
+                            <li><asp:Button ID="btndash" runat="server" class="nav__link" Text="Dashboard" /></li>
+                            <li><asp:Button ID="btnOrder" runat="server" class="nav__link" Text="Order Management" /></li>
+                            <li><asp:Button ID="btnStock" runat="server" class="nav__link" Text="Stock Management" /> </li>
+                            <li> <asp:Button ID="btnCus" runat="server" class="nav__link" Text="Customer Management"  /> </li>
+                            <li><asp:Button ID="btnsup" runat="server" class="nav__link" Text="Suppliers" />  </li>
+                            <li> <asp:Button ID="btncate" runat="server" class="nav__link" Text="Categories" OnClick="btncate_Click"  /></li>
 
                             <li> <a href="welcome.php" class="login" id="loginbutton">Log Out</a> </li>
                         </ul>

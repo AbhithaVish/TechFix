@@ -18,5 +18,10 @@ namespace TechFix
         {
             Response.Redirect("addcategories.aspx");
         }
+
+        protected void btncate_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("addcategories.aspx");
+        }
     }
 }
