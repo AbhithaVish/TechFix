@@ -7,21 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace TechFix
 {
-    public partial class AdminHome : System.Web.UI.Page
+    public partial class Categories : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void btnaddCategories_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("addcategories.aspx");
-        }
-
-        protected void btncate_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Categories.aspx");
         }
 
         protected void btndash_Click(object sender, EventArgs e)

@@ -70,6 +70,7 @@
     <Content Include="addcategories.aspx" />
     <Content Include="AdminHome.aspx" />
     <Content Include="adminStyles.css" />
+    <Content Include="Categories.aspx" />
     <Content Include="LoginForm.aspx" />
     <Content Include="StyleSheet.css" />
     <Content Include="SupplerHome.aspx" />
@@ -92,6 +93,13 @@
     </Compile>
     <Compile Include="AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.aspx.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>

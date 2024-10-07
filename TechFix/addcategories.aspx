@@ -44,7 +44,7 @@
 
         td {
             padding: 10px 0;
-            color: black;  /* Set label text color to black */
+            color: black; 
         }
 
         .form-group input {

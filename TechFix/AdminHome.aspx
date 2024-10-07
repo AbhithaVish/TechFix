@@ -19,7 +19,7 @@
                 <nav class="nav container">
                     <div class="nav__menu">
                         <ul class="nav__list">
-                            <li><asp:Button ID="btndash" runat="server" class="nav__link" Text="Dashboard" /></li>
+                            <li><asp:Button ID="btndash" runat="server" class="nav__link" Text="Dashboard" OnClick="btndash_Click" /></li>
                             <li><asp:Button ID="btnOrder" runat="server" class="nav__link" Text="Order Management" /></li>
                             <li><asp:Button ID="btnStock" runat="server" class="nav__link" Text="Stock Management" /> </li>
                             <li> <asp:Button ID="btnCus" runat="server" class="nav__link" Text="Customer Management"  /> </li>
