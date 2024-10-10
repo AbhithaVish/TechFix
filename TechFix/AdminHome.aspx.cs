@@ -14,19 +14,14 @@ namespace TechFix
 
         }
 
-        protected void btnaddCategories_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("addcategories.aspx");
-        }
-
         protected void btncate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Categories.aspx");
+            Response.Redirect("addCategories.aspx");
         }
 
-        protected void btndash_Click(object sender, EventArgs e)
+        protected void btnsup_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdminHome.aspx");
+            Response.Redirect("adminViewProducts.aspx");
         }
     }
 }

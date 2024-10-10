@@ -87,21 +87,30 @@ namespace TechFix
         protected global::System.Web.UI.WebControls.Label lbltext;
 
         /// <summary>
-        /// txtid control.
+        /// txtCategoryId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtid;
+        protected global::System.Web.UI.WebControls.TextBox txtCategoryId;
 
         /// <summary>
-        /// txtcategory control.
+        /// txtCategoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcategory;
+        protected global::System.Web.UI.WebControls.TextBox txtCategoryName;
+
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

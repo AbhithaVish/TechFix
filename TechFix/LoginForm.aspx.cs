@@ -16,7 +16,7 @@ namespace TechFix
         {
             try
             {
-                con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix;Integrated Security=True");
+                con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True");
                 con.Open();//connecting to the database
             }
             catch (Exception ex){
@@ -34,14 +34,16 @@ namespace TechFix
 
             try
             {
-                // Directly using txtusername.Text and txtpassword.Text in the query
-                string query = "SELECT COUNT(*) FROM Admin_login WHERE username = '" + txtusername.Text + "' AND password = '" + txtpassword.Text + "'";
-
+                string query = "SELECT COUNT(*) FROM AdminTable WHERE username = @username AND password = @password";
                 SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@username", txtusername.Text);
+                cmd.Parameters.AddWithValue("@password", txtpassword.Text);
+
                 int userCount = (int)cmd.ExecuteScalar();
 
                 if (userCount > 0)
                 {
+                    Session["username"] = txtusername.Text;  // Store the username in session
                     Response.Redirect("AdminHome.aspx");
                 }
                 else

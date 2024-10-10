@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Xml;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace TechFix
 {
@@ -17,9 +10,19 @@ namespace TechFix
         SqlConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if the user is logged in
+            if (Session["username"] == null)
+            {
+                Response.Redirect("SupplierLogin.aspx"); // Redirect to login page if not logged in
+                return;
+            }
+
+            // Display the username (optional)
+            lblUsername.Text = "Welcome, " + Session["username"].ToString();
+
             try
             {
-                con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix;Integrated Security=True");
+                con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True");
                 con.Open();
             }
             catch (Exception ex)
@@ -32,11 +35,17 @@ namespace TechFix
                 LoadCustomerData();
             }
         }
+
         private void LoadCustomerData()
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT ItemId, ItemName, Description, Price, Stock,Category,Warranty  FROM Product_Supplier", con);
+                string username = Session["username"].ToString(); // Get the username from session
+
+                // Use the correct column names
+                SqlCommand cmd = new SqlCommand("SELECT ItemId, ItemName, Decription, Price, Qauntity, CategoryName, Warranty FROM Product_Supplier WHERE username = @Username", con);
+                cmd.Parameters.AddWithValue("@Username", username); // Parameterize the query to prevent SQL injection
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -53,7 +62,7 @@ namespace TechFix
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Handle selected index change if needed
         }
     }
 }

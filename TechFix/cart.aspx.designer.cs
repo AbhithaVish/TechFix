@@ -11,7 +11,7 @@ namespace TechFix
 {
 
 
-    public partial class SupplerHome
+    public partial class cart
     {
 
         /// <summary>
@@ -24,57 +24,39 @@ namespace TechFix
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// btnAddProducts control.
+        /// cartMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddProducts;
+        protected global::System.Web.UI.WebControls.Literal cartMessage;
 
         /// <summary>
-        /// btnviewProducts control.
+        /// cartRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnviewProducts;
+        protected global::System.Web.UI.WebControls.Repeater cartRepeater;
 
         /// <summary>
-        /// btnOrders control.
+        /// totalPriceLiteral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOrders;
+        protected global::System.Web.UI.WebControls.Literal totalPriceLiteral;
 
         /// <summary>
-        /// btnProfile control.
+        /// checkoutBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProfile;
-
-        /// <summary>
-        /// btnCus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCus;
-
-        /// <summary>
-        /// lblWelcome control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWelcome;
+        protected global::System.Web.UI.WebControls.Button checkoutBtn;
     }
 }

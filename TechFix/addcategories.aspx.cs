@@ -5,50 +5,45 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Xml;
 
 namespace TechFix
 {
     public partial class addcategories : System.Web.UI.Page
     {
-        SqlConnection con;
+        CategoryServiceReference.CategoryWebServiceSoapClient obj =
+            new CategoryServiceReference.CategoryWebServiceSoapClient();
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix;Integrated Security=True");
-                con.Open();//connecting to the databas
-            }
-            catch (Exception ex)
-            {
-                lbltext.Text = "Error Connecting to the database" + ex;
-
-            }
+            txtCategoryId.Text = obj.AutoCategoryId();
         }
 
-        protected void btnsubmit_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (con.State == System.Data.ConnectionState.Closed)
+            if (txtCategoryName.Text.Length > 50) 
             {
-                con.Open();
+                lbltext.Text = "Category Name too long. Maximum length is 50 characters.";
+                return;
             }
-            try
-            {
-                SqlCommand cmd = new SqlCommand("insert into Categories values('" + txtid.Text + "','" + txtcategory.Text + "')", con);
-                int NoRows = cmd.ExecuteNonQuery();
 
-                if (NoRows > 0)
+            string value = obj.insertCategory(txtCategoryId.Text, txtCategoryName.Text);
+
+            int norecord;
+            if (Int32.TryParse(value, out norecord))
+            {
+                if (norecord > 0)
                 {
-                    lbltext.Text = "Record added successfully!";
+                    lbltext.Text = "Record Successfully Added";
                 }
                 else
                 {
-                    lbltext.Text = "Failed to add customer.";
+                    lbltext.Text = "Record Failed to Add";
                 }
             }
-            catch (Exception ex)
+            else
             {
-                lbltext.Text = "Error inserting data " + ex;
+                lbltext.Text = "Unexpected return value: " + value;
             }
         }
     }
-}
+    }

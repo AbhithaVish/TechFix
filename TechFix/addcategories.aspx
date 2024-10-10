@@ -106,15 +106,15 @@
             <table>
                 <tr>
                     <td>Category ID:</td>
-                    <td><asp:TextBox ID="txtid" runat="server" class="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtCategoryId" runat="server" class="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Category Name:</td>
-                    <td><asp:TextBox ID="txtcategory" runat="server" class="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtCategoryName" runat="server" class="form-control"></asp:TextBox></td>
                 </tr>
             </table>
             <div class="button-container">
-                <button type="submit" runat="server" onserverclick="btnsubmit_Click">Save</button>
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" style="height: 26px" />
             </div>
         </div>
     </form>

@@ -11,10 +11,20 @@ namespace TechFix
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["username"] != null)
+                {
+                    lblWelcome.Text = "Welcome, " + Session["username"].ToString(); // Optional: display welcome message
+                }
+                else
+                {
+                    Response.Redirect("SupplierLogin.aspx"); // Redirect to login if not logged in
+                }
+            }
         }
-        
-        protected void btnAddProducts_Click(object sender, EventArgs e)
+
+        protected void btnAddProducts_Click1(object sender, EventArgs e)
         {
             Response.Redirect("supplierAddProducts.aspx");
         }
