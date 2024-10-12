@@ -11,52 +11,54 @@ namespace TechFix
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            // Redirect if not logged in
+            if (Session["username"] == null)
             {
-                con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True");
-                con.Open();
-            }
-            catch (Exception ex)
-            {
-                lblText.Text = "Error connecting to DB: " + ex.Message;
+                Response.Redirect("LoginForm.aspx");
+                return;
             }
 
+            // Establish SQL connection
+            con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True");
+            con.Open();
+
+            // Load products only on first page load (not on postback)
             if (!IsPostBack)
             {
                 LoadProducts();
             }
         }
 
+        // Method to load products from the database
         private void LoadProducts()
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT productID, productName, productDesc, productPrice FROM ProductsTable", con);
+                // Select the required columns
+                SqlCommand cmd = new SqlCommand("SELECT productID, productName, productDesc, productPrice, productQty, username, categoryId FROM ProductsTable", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
+                // Bind the data to the Repeater control
                 productRepeater.DataSource = dt;
                 productRepeater.DataBind();
             }
             catch (Exception ex)
             {
+                // Display error message in case of failure
                 lblText.Text = "Error loading products: " + ex.Message;
             }
         }
 
-        protected void ViewCart_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("cart.aspx");
-        }
-
+        // Method to handle Add to Cart button click events
         protected void productRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "AddToCart")
             {
-                int productID = Convert.ToInt32(e.CommandArgument);
+                int productID = Convert.ToInt32(e.CommandArgument); // Get productID from command argument
 
-                // Add product to session/cart
+                // Create or retrieve the cart from the session
                 DataTable cart;
                 if (Session["Cart"] == null)
                 {
@@ -70,29 +72,31 @@ namespace TechFix
                     cart = (DataTable)Session["Cart"];
                 }
 
-                try
-                {
-                    // Use parameters to avoid SQL injection
-                    SqlCommand cmd = new SqlCommand("SELECT productID, productName, productPrice FROM ProductsTable WHERE productID = @productID", con);
-                    cmd.Parameters.AddWithValue("@productID", productID);
-                    SqlDataReader dr = cmd.ExecuteReader();
+                // Fetch the product details for the selected product
+                SqlCommand cmd = new SqlCommand("SELECT productID, productName, productPrice FROM ProductsTable WHERE productID = @productID", con);
+                cmd.Parameters.AddWithValue("@productID", productID);
+                SqlDataReader dr = cmd.ExecuteReader();
 
-                    if (dr.Read())
-                    {
-                        DataRow row = cart.NewRow();
-                        row["productID"] = dr["productID"];
-                        row["productName"] = dr["productName"];
-                        row["productPrice"] = dr["productPrice"];
-                        cart.Rows.Add(row);
-                    }
-                    dr.Close();
-                    Session["Cart"] = cart;
-                }
-                catch (Exception ex)
+                if (dr.Read())
                 {
-                    lblText.Text = "Error adding product to cart: " + ex.Message;
+                    // Add the product details to the cart
+                    DataRow row = cart.NewRow();
+                    row["productID"] = dr["productID"];
+                    row["productName"] = dr["productName"];
+                    row["productPrice"] = dr["productPrice"];
+                    cart.Rows.Add(row);
                 }
+                dr.Close();
+
+                // Save the cart back into the session
+                Session["Cart"] = cart;
             }
+        }
+
+        // Method to redirect to the cart page when 'View Cart' is clicked
+        protected void btnViewCart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("cart.aspx");
         }
     }
 }

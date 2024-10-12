@@ -8,7 +8,7 @@
     <link href="adminStyles.css" rel="stylesheet" />
     <style>
         body{
-/*            background-image: url('../Images/admin background.png');*/
+            background-image: url('../Images/admin background.png');
         }
     </style>
 </head>
@@ -28,6 +28,8 @@
 
                             <li> <a href="welcome.php" class="login" id="loginbutton">Log Out</a> </li>
                         </ul>
+
+                        <asp:Label ID="lblWelcome" runat="server" Text="Label"></asp:Label>
                     </div>
                 </nav>
             </header>

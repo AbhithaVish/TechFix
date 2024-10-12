@@ -6,9 +6,7 @@
 <head runat="server">
     <title>View Products - Admin</title>
     <link href="adminStyles.css" rel="stylesheet" />
-    <style>
-        /* Your existing CSS styles */
-    </style>
+    <link href="viewproducts.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -18,9 +16,13 @@
                 <ItemTemplate>
                     <div class="product-item">
                         <div>
-                            <h3><%# Eval("productName") %></h3>
-                            <p><%# Eval("productDesc") %></p> 
+                            <h3>Product Name: <%# Eval("productName") %></h3>
+                            <p>Product Description: <%# Eval("productDesc") %></p> 
                             <p>Price: $<%# Eval("productPrice", "{0:F2}") %></p> 
+                            <p>Quantity Available: <%# Eval("productQty") %></p>
+                            <p>Category ID: <%# Eval("categoryId") %></p>
+                            <p>Added By (Supplier): <%# Eval("username") %></p>
+                            <p>Product ID: <%# Eval("productID") %></p> 
                         </div>
                         <div class="product-actions">
                             <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" 
@@ -31,7 +33,7 @@
                 </ItemTemplate>
             </asp:Repeater>
 
-            <asp:Button ID="btnViewCart" runat="server" Text="View Cart" OnClick="ViewCart_Click" CssClass="view-cart" />
+            <asp:Button ID="btnViewCart" runat="server" Text="View Cart" CssClass="view-cart" OnClick="btnViewCart_Click" />
             <asp:Label ID="lblText" runat="server" Text="" ForeColor="Red"></asp:Label>
         </div>
     </form>

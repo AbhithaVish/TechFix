@@ -6,7 +6,87 @@
     <title>Product Management</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/products.css"/>
-    
+    <style>
+        body, h1, form, input, button {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    margin-top: 200px;
+}
+
+.container-add {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 10px 0;
+    color: black; 
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 150px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+label {
+    font-weight: bold;
+    color: black;  
+}
+
+.message-label {
+    text-align: center;
+    color: green;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+    </style>
 </head>
 <body>
     <h1>Add New Product</h1>

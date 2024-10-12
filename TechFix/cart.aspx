@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="TechFix.cart" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Cart - TechFix</title>
@@ -88,12 +87,12 @@
                 <ItemTemplate>
                     <tr>
                         <td><%# Eval("productName") %></td>
-                        <td>$<%# Eval("productPrice") %></td>
+                        <td>$<%# Eval("productPrice", "{0:F2}") %></td>
                         <td>
                             <asp:TextBox ID="quantityTextBox" runat="server" Text='<%# Eval("Quantity") %>' Width="50px" />
                             <asp:Button ID="updateBtn" runat="server" Text="Update" CommandArgument='<%# Eval("productID") %>' CommandName="Update" />
                         </td>
-                        <td>$<%# Eval("TotalPrice") %></td>
+                        <td>$<%# Eval("TotalPrice", "{0:F2}") %></td>
                         <td>
                             <asp:Button ID="removeBtn" runat="server" Text="Remove" CommandArgument='<%# Eval("productID") %>' CommandName="Remove" CssClass="remove-btn" />
                         </td>
@@ -106,9 +105,11 @@
             </asp:Repeater>
 
             <div class="total-section">
-                <asp:Literal ID="totalPriceLiteral" runat="server"></asp:Literal>
+                <asp:Literal ID="totalPriceLiteral" runat="server" Text="Total Price: $0.00"></asp:Literal>
                 <asp:Button ID="checkoutBtn" runat="server" Text="Proceed to Checkout" OnClick="Checkout_Click" CssClass="checkout-btn" />
             </div>
+
+            <asp:Label ID="lblText" runat="server" Text=""></asp:Label>
         </div>
     </form>
 </body>
