@@ -7,6 +7,8 @@ namespace TechFix
 {
     public partial class cart : System.Web.UI.Page
     {
+        // Web service client to access OrderWebService
+        OrderServiceReference.OrderWebServiceSoapClient obj = new OrderServiceReference.OrderWebServiceSoapClient();
         SqlConnection con;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,138 +28,146 @@ namespace TechFix
             }
         }
 
-        // Initialize cart DataTable if it doesn't exist
-        private void InitializeCart()
-        {
-            DataTable cart = new DataTable();
-            cart.Columns.Add("productID", typeof(int));
-            cart.Columns.Add("productName", typeof(string));
-            cart.Columns.Add("productPrice", typeof(decimal));
-            cart.Columns.Add("Quantity", typeof(int)); // Ensure Quantity column is present
-            cart.Columns.Add("categoryId", typeof(string));
-
-            Session["Cart"] = cart;
-        }
-
-        // Load cart items from session
         private void LoadCart()
-        {
-            DataTable cart = (DataTable)Session["Cart"];
-            if (cart == null || cart.Rows.Count == 0)
-            {
-                cartMessage.Text = "Your cart is empty.";
-                return;
-            }
-
-            cartRepeater.DataSource = cart;
-            cartRepeater.DataBind();
-
-            // Calculate total price
-            decimal totalPrice = 0;
-            foreach (DataRow row in cart.Rows)
-            {
-                totalPrice += Convert.ToDecimal(row["productPrice"]) * Convert.ToInt32(row["Quantity"]);
-            }
-            totalPriceLiteral.Text = "Total Price: $" + totalPrice.ToString("F2");
-        }
-
-        // Handle the checkout process
-        protected void Checkout_Click(object sender, EventArgs e)
-        {
-            DataTable cart = (DataTable)Session["Cart"];
-            string username = Session["username"].ToString();
-
-            if (cart != null && cart.Rows.Count > 0)
-            {
-                foreach (DataRow row in cart.Rows)
-                {
-                    SaveOrder(row, username);
-                }
-
-                // Clear the cart after checkout
-                Session["Cart"] = null;
-                Response.Redirect("OrderConfirmation.aspx"); // Redirect to order confirmation page
-            }
-            else
-            {
-                lblText.Text = "Your cart is empty.";
-            }
-        }
-
-        // Save order details to the database
-        private void SaveOrder(DataRow row, string username)
         {
             try
             {
-                using (SqlConnection con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True"))
+                // Query to select data from CartTable without username filtering
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT ct.productName, ct.productQty AS Quantity, ct.price AS productPrice, " +
+                    "(ct.productQty * ct.price) AS TotalPrice, ct.username " +
+                    "FROM CartTable ct", con);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable cart = new DataTable();
+                da.Fill(cart);
+
+                if (cart.Rows.Count == 0)
                 {
-                    con.Open();
-                    Random random = new Random();
-                    int orderId = random.Next(100000, 999999); // Generate a random 6-digit order ID
+                    cartMessage.Text = "Your cart is empty.";
+                }
+                else
+                {
+                    cartRepeater.DataSource = cart;
+                    cartRepeater.DataBind();
 
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO orderTable (OrderId, productName, productQty, username, categoryId, status) VALUES (@OrderId, @productName, @productQty, @username, @categoryId, @status)", con))
+                    decimal totalPrice = 0;
+                    foreach (DataRow row in cart.Rows)
                     {
-                        cmd.Parameters.AddWithValue("@OrderId", orderId);
-                        cmd.Parameters.AddWithValue("@productName", row["productName"]);
-                        cmd.Parameters.AddWithValue("@productQty", row["Quantity"]);
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@categoryId", row["categoryId"]);
-                        cmd.Parameters.AddWithValue("@status", "pending");
-
-                        cmd.ExecuteNonQuery();
+                        totalPrice += Convert.ToDecimal(row["TotalPrice"]);
                     }
+                    totalPriceLiteral.Text = "Total Price: Rs." + totalPrice.ToString("F2");
                 }
             }
             catch (Exception ex)
             {
-                lblText.Text = "Error saving order: " + ex.Message;
+                lblText.Text = "Error loading cart: " + ex.Message;
             }
         }
 
-        // Event handler for item commands in the cart repeater
         protected void cartRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            DataTable cart = (DataTable)Session["Cart"];
-            if (cart != null)
+            if (e.CommandName == "Update")
             {
-                if (e.CommandName == "Update")
+                UpdateQuantity(e);
+            }
+            else if (e.CommandName == "Remove")
+            {
+                RemoveItem(e);
+            }
+        }
+
+        private void UpdateQuantity(RepeaterCommandEventArgs e)
+        {
+            try
+            {
+                string productName = e.CommandArgument.ToString();
+                TextBox txtQuantity = (TextBox)e.Item.FindControl("quantityTextBox");
+                int newQuantity = Convert.ToInt32(txtQuantity.Text);
+
+                // Ensure that the new quantity is not less than 1
+                if (newQuantity < 1)
                 {
-                    // Update quantity
-                    int productID = Convert.ToInt32(e.CommandArgument);
-                    TextBox txtQuantity = (TextBox)e.Item.FindControl("quantityTextBox");
-                    int newQuantity = Convert.ToInt32(txtQuantity.Text);
-
-                    // Find the row in the cart and update quantity
-                    foreach (DataRow row in cart.Rows)
-                    {
-                        if (Convert.ToInt32(row["productID"]) == productID)
-                        {
-                            row["Quantity"] = newQuantity;
-                            break;
-                        }
-                    }
-
-                    // Reload the cart to reflect changes
-                    LoadCart();
+                    lblText.Text = "Quantity must be at least 1.";
+                    return;
                 }
-                else if (e.CommandName == "Remove")
+
+                SqlCommand cmd = new SqlCommand(
+                    "UPDATE CartTable SET productQty = @newQuantity WHERE productName = @productName", con);
+                cmd.Parameters.AddWithValue("@newQuantity", newQuantity);
+                cmd.Parameters.AddWithValue("@productName", productName);
+
+                cmd.ExecuteNonQuery();
+                LoadCart();
+            }
+            catch (Exception ex)
+            {
+                lblText.Text = "Error updating quantity: " + ex.Message;
+            }
+        }
+
+        private void RemoveItem(RepeaterCommandEventArgs e)
+        {
+            try
+            {
+                string productName = e.CommandArgument.ToString();
+
+                SqlCommand cmd = new SqlCommand(
+                    "DELETE FROM CartTable WHERE productName = @productName", con);
+                cmd.Parameters.AddWithValue("@productName", productName);
+
+                cmd.ExecuteNonQuery();
+                LoadCart();
+            }
+            catch (Exception ex)
+            {
+                lblText.Text = "Error removing item: " + ex.Message;
+            }
+        }
+
+        // Use web service to save order on checkout
+        protected void Checkout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Call the SaveOrder method without passing the session username.
+                string result = obj.SaveOrder();
+
+                if (result.StartsWith("Order placed successfully"))
                 {
-                    // Remove item from cart
-                    int productID = Convert.ToInt32(e.CommandArgument);
-
-                    // Find the row in the cart and remove it
-                    for (int i = cart.Rows.Count - 1; i >= 0; i--)
-                    {
-                        if (Convert.ToInt32(cart.Rows[i]["productID"]) == productID)
-                        {
-                            cart.Rows.RemoveAt(i);
-                            break;
-                        }
-                    }
-
-                    // Reload the cart to reflect changes
-                    LoadCart();
+                    ClearCartAfterCheckout(); // Clear all items in the cart
+                    Response.Redirect("orders.aspx"); // Redirect to orders page
                 }
+                else
+                {
+                    lblText.Text = result; // Display any error messages
+                }
+            }
+            catch (Exception ex)
+            {
+                lblText.Text = "Error during checkout: " + ex.Message;
+            }
+        }
+
+        private void ClearCartAfterCheckout()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(
+                    "DELETE FROM CartTable", con); // Clear all items in the CartTable
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                lblText.Text = "Error clearing cart: " + ex.Message;
+            }
+        }
+
+        protected void Page_Unload(object sender, EventArgs e)
+        {
+            if (con != null && con.State == ConnectionState.Open)
+            {
+                con.Close();
             }
         }
     }

@@ -43,7 +43,7 @@ namespace TechFix
                 string username = Session["username"].ToString(); // Get the username from session
 
                 // Use the correct column names
-                SqlCommand cmd = new SqlCommand("SELECT ItemId, ItemName, Decription, Price, Qauntity, CategoryName, Warranty FROM Product_Supplier WHERE username = @Username", con);
+                SqlCommand cmd = new SqlCommand("SELECT ItemId, ItemName, Decription, Price, Qauntity, CategoryName, Warranty FROM Products WHERE username = @Username", con);
                 cmd.Parameters.AddWithValue("@Username", username); // Parameterize the query to prevent SQL injection
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

@@ -33,5 +33,10 @@ namespace TechFix
         {
             Response.Redirect("SupplierViewProducts.aspx");
         }
+
+        protected void btnOrders_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SupOrders.aspx");
+        }
     }
 }

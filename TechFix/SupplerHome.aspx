@@ -17,7 +17,7 @@
                          <ul class="nav__list">
                              <li><asp:Button ID="btnAddProducts" runat="server" class="nav__link" Text="Add Products" OnClick="btnAddProducts_Click1"   /> </li>
                              <li> <asp:Button ID="btnviewProducts" runat="server" class="nav__link" Text="View Products" OnClick="btnviewProducts_Click"   /></li>
-                             <li><asp:Button ID="btnOrders" runat="server" class="nav__link" Text="Orders"/>  </li>
+                             <li><asp:Button ID="btnOrders" runat="server" class="nav__link" Text="Orders" OnClick="btnOrders_Click"/>  </li>
                              <li> <asp:Button ID="btnProfile" runat="server" class="nav__link" Text="Profile"  /></li>
                              <li><asp:Button ID="btnCus" runat="server" class="nav__link" Text="Customers" /> </li>
 
@@ -26,8 +26,9 @@
                      </div>
                  </nav>
              </header>
-          <div>
-              <asp:Label ID="lblWelcome" runat="server" Text="Label"></asp:Label></div>
+                  <div>
+                      <asp:Label ID="lblWelcome" runat="server" Text="Label"></asp:Label>
+                  </div>
          </div>
     </form>
 </body>

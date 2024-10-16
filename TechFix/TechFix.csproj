@@ -102,13 +102,37 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\loginServiceReference\loginWebService.disco" />
+    <None Include="Connected Services\loginServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\loginServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\loginServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\OrderServiceReference\OrderWebService.disco" />
+    <None Include="Connected Services\OrderServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\OrderServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\OrderServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\SupOrderServiceReference\CategoryWebService.disco" />
+    <None Include="Connected Services\SupOrderServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\SupOrderServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\SupOrderServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="LoginForm.aspx" />
+    <Content Include="orders.aspx" />
+    <Content Include="ProductAdd.css" />
+    <Content Include="ProductView.css" />
     <Content Include="StyleSheet.css" />
+    <Content Include="SupOrders.aspx" />
     <Content Include="SupplerHome.aspx" />
     <Content Include="supplierAddProducts.aspx" />
     <Content Include="SupplierLogin.aspx" />
     <Content Include="SupplierViewProducts.aspx" />
-    <Content Include="viewproducts.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +176,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\loginServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\OrderServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\SupOrderServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.aspx.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -159,7 +198,21 @@
     <Compile Include="LoginForm.aspx.designer.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="orders.aspx.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="orders.aspx.designer.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupOrders.aspx.cs">
+      <DependentUpon>SupOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SupOrders.aspx.designer.cs">
+      <DependentUpon>SupOrders.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SupplerHome.aspx.cs">
       <DependentUpon>SupplerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,6 +250,21 @@
     <Content Include="Connected Services\CategoryServiceReference\TechFix.CategoryServiceReference.insertCategoryResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\loginServiceReference\loginWebService.wsdl" />
+    <Content Include="Connected Services\loginServiceReference\TechFix.loginServiceReference.ValidateUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\OrderServiceReference\OrderWebService.wsdl" />
+    <Content Include="Connected Services\OrderServiceReference\TechFix.OrderServiceReference.SaveOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\SupOrderServiceReference\CategoryWebService.wsdl" />
+    <Content Include="Connected Services\SupOrderServiceReference\TechFix.SupOrderServiceReference.AutoCategoryIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SupOrderServiceReference\TechFix.SupOrderServiceReference.insertCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -213,6 +281,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CategoryServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\loginServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\OrderServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\SupOrderServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

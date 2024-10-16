@@ -19,10 +19,10 @@ namespace TechFix
             }
 
             // Establish SQL connection
-            con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True");
+            con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True;MultipleActiveResultSets=True");
             con.Open();
 
-            // Load products only on first page load (not on postback)
+            // Load products only on the first page load (not on postback)
             if (!IsPostBack)
             {
                 LoadProducts();
@@ -34,66 +34,98 @@ namespace TechFix
         {
             try
             {
-                // Select the required columns
-                SqlCommand cmd = new SqlCommand("SELECT productID, productName, productDesc, productPrice, productQty, username, categoryId FROM ProductsTable", con);
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT productID, productName, productDesc, productPrice, productQty, username, categoryId FROM ProductsTable", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                // Bind the data to the Repeater control
-                productRepeater.DataSource = dt;
-                productRepeater.DataBind();
+                // Bind the data to the DataList control
+                productList.DataSource = dt;
+                productList.DataBind();
             }
             catch (Exception ex)
             {
-                // Display error message in case of failure
                 lblText.Text = "Error loading products: " + ex.Message;
             }
         }
 
         // Method to handle Add to Cart button click events
-        protected void productRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        protected void productList_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (e.CommandName == "AddToCart")
             {
-                int productID = Convert.ToInt32(e.CommandArgument); // Get productID from command argument
+                int productID = Convert.ToInt32(e.CommandArgument);
+                string loggedInUsername = Session["username"].ToString(); // Logged-in user
 
-                // Create or retrieve the cart from the session
-                DataTable cart;
-                if (Session["Cart"] == null)
+                try
                 {
-                    cart = new DataTable();
-                    cart.Columns.Add("productID", typeof(int));
-                    cart.Columns.Add("productName", typeof(string));
-                    cart.Columns.Add("productPrice", typeof(decimal));
+                    // Fetch the product details along with the supplier's username
+                    SqlCommand cmd = new SqlCommand(
+                        "SELECT productID, productName, productPrice, username AS supplierUsername " +
+                        "FROM ProductsTable WHERE productID = @productID", con);
+                    cmd.Parameters.AddWithValue("@productID", productID);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        string productName = dr["productName"].ToString();
+                        decimal price = Convert.ToDecimal(dr["productPrice"]);
+                        string supplierUsername = dr["supplierUsername"].ToString(); // Get supplier's username
+                        int quantity = 1;
+                        decimal totalPrice = price * quantity;
+
+                        // Insert product into the cart with the supplier's username
+                        InsertIntoCartTable(productID, productName, quantity, price, totalPrice, supplierUsername);
+                        lblText.Text = "Product added to cart successfully!";
+                    }
+                    else
+                    {
+                        lblText.Text = "Product not found.";
+                    }
+                    dr.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    cart = (DataTable)Session["Cart"];
+                    lblText.Text = "Error adding to cart: " + ex.Message;
                 }
-
-                // Fetch the product details for the selected product
-                SqlCommand cmd = new SqlCommand("SELECT productID, productName, productPrice FROM ProductsTable WHERE productID = @productID", con);
-                cmd.Parameters.AddWithValue("@productID", productID);
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
-                {
-                    // Add the product details to the cart
-                    DataRow row = cart.NewRow();
-                    row["productID"] = dr["productID"];
-                    row["productName"] = dr["productName"];
-                    row["productPrice"] = dr["productPrice"];
-                    cart.Rows.Add(row);
-                }
-                dr.Close();
-
-                // Save the cart back into the session
-                Session["Cart"] = cart;
             }
         }
 
-        // Method to redirect to the cart page when 'View Cart' is clicked
+        // Generate the next cart ID
+        private int GetNextCartId()
+        {
+            string query = "SELECT ISNULL(MAX(id), 0) + 1 FROM CartTable";
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        // Insert product into the CartTable
+        private void InsertIntoCartTable(int productID, string productName, int quantity, decimal price, decimal totalPrice, string supplierUsername)
+        {
+            int newId = GetNextCartId();
+
+            string query = "INSERT INTO CartTable (id, productID, productName, productQty, price, totalPrice, username) " +
+                           "VALUES (@id, @productID, @productName, @productQty, @price, @totalPrice, @username)";
+
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@id", newId);
+                cmd.Parameters.AddWithValue("@productID", productID);
+                cmd.Parameters.AddWithValue("@productName", productName);
+                cmd.Parameters.AddWithValue("@productQty", quantity);
+                cmd.Parameters.AddWithValue("@price", price);
+                cmd.Parameters.AddWithValue("@totalPrice", totalPrice);
+                cmd.Parameters.AddWithValue("@username", supplierUsername); // Save supplier's username
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // Button to view the cart
         protected void btnViewCart_Click(object sender, EventArgs e)
         {
             Response.Redirect("cart.aspx");

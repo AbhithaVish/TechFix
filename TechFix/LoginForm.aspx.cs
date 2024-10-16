@@ -1,65 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Drawing;
 
 namespace TechFix
 {
     public partial class LoginForm : System.Web.UI.Page
     {
-        SqlConnection con;
+        loginServiceReference.loginWebServiceSoapClient obj = new loginServiceReference.loginWebServiceSoapClient();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                con = new SqlConnection("data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True");
-                con.Open();//connecting to the database
-            }
-            catch (Exception ex){
-                lbltext.Text = "Error Connecting to the database" + ex;
-
-            }
         }
 
         protected void btnlogin_Click(object sender, EventArgs e)
         {
-            if (con.State == System.Data.ConnectionState.Closed)
-            {
-                con.Open();
-            }
+            // Call the web service's ValidateUser method
+            bool isValidUser = obj.ValidateUser(txtusername.Text, txtpassword.Text);
 
-            try
+            if (isValidUser)
             {
-                string query = "SELECT COUNT(*) FROM AdminTable WHERE username = @username AND password = @password";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@username", txtusername.Text);
-                cmd.Parameters.AddWithValue("@password", txtpassword.Text);
-
-                int userCount = (int)cmd.ExecuteScalar();
-
-                if (userCount > 0)
-                {
-                    Session["username"] = txtusername.Text;  // Store the username in session
-                    Response.Redirect("AdminHome.aspx");
-                }
-                else
-                {
-                    lbltext.Text = "Invalid Username or Password.";
-                }
+                // Set the session and redirect to AdminHome if valid
+                Session["username"] = txtusername.Text;
+                lbltext.Text = "User Login Success";
+                Response.Redirect("AdminHome.aspx");
             }
-            catch (Exception ex)
+            else
             {
-                lbltext.Text = "Error: " + ex.Message;
-            }
-            finally
-            {
-                con.Close();
+                // Display error message for invalid login
+                lbltext.Text = "User Authentication Failed.";
+                lbltext.ForeColor = System.Drawing.Color.Red; // Optionally set color for visibility
             }
         }
-
     }
 }

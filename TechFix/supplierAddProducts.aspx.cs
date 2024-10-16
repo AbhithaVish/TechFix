@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data;
 using System.Web.UI.WebControls;
 
 namespace ClientWebApplication
@@ -17,8 +16,7 @@ namespace ClientWebApplication
 
             if (!IsPostBack)
             {
-                getSupplierName();
-                getCategoryName();
+                getCategoryName(); // Only fetch categories as the supplier dropdown is no longer needed
             }
         }
 
@@ -46,13 +44,22 @@ namespace ClientWebApplication
                     return;
                 }
 
+                // Get the logged-in username from the session
+                string username = Session["username"] != null ? Session["username"].ToString() : string.Empty;
+
+                if (string.IsNullOrEmpty(username))
+                {
+                    lblText.Text = "You must be logged in to add products.";
+                    return;
+                }
+
                 SqlCommand cmd = new SqlCommand("INSERT INTO ProductsTable (productName, productPrice, productQty, productDesc, username, categoryId) VALUES (@productName, @productPrice, @productQty, @productDesc, @username, @categoryId)", con);
 
                 cmd.Parameters.AddWithValue("@productName", txtProdName.Text);
                 cmd.Parameters.AddWithValue("@productPrice", productPrice);
                 cmd.Parameters.AddWithValue("@productQty", productQty);
                 cmd.Parameters.AddWithValue("@productDesc", txtProdDesc.Text);
-                cmd.Parameters.AddWithValue("@username", dlSupplier.SelectedValue);
+                cmd.Parameters.AddWithValue("@username", username); // Use the session username directly
                 cmd.Parameters.AddWithValue("@categoryId", dlCategory.SelectedValue);
 
                 int NoRows = cmd.ExecuteNonQuery();
@@ -78,20 +85,6 @@ namespace ClientWebApplication
             {
                 con.Close();
             }
-        }
-
-        private void getSupplierName()
-        {
-            SqlCommand cmd = new SqlCommand("SELECT name, username FROM SuppliersTable", con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            dlSupplier.DataSource = dt;
-            dlSupplier.DataTextField = "name";
-            dlSupplier.DataValueField = "username";
-            dlSupplier.DataBind();
-            dlSupplier.Items.Insert(0, new ListItem("Select supplier", ""));
         }
 
         private void getCategoryName()
