@@ -5,6 +5,7 @@
 <head runat="server">
     <title>Supplier Orders</title>
     <link href="adminStyles.css" rel="stylesheet" />
+    <link href="ProductView.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -32,7 +33,7 @@
                             <table>
                                 <tr>
                                     <td><strong>Order Id:</strong></td>
-                                    <td><%# Eval("OrderId") %></td>
+                                    <td><asp:Label ID="lblOrderId" runat="server" Text='<%# Eval("OrderId") %>'></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Product Name:</strong></td>
@@ -63,12 +64,14 @@
                             </table>
 
                             <asp:Button ID="btnUpdateStatus" runat="server" Text="Update Status"
-                                CommandName="UpdateStatus" CommandArgument='<%# Eval("OrderId") %>'
+                                CommandName="UpdateStatus" 
+                                CommandArgument='<%# Eval("OrderId").ToString() %>'
                                 CssClass="update-button" />
                         </div>
                         <hr />
                     </ItemTemplate>
                 </asp:Repeater>
+
                 <asp:Label ID="lblText" runat="server" CssClass="error-message"></asp:Label>
             </div>
         </div>

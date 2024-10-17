@@ -21,6 +21,13 @@ namespace TechFix.OrderServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SaveOrder", ReplyAction="*")]
         System.Threading.Tasks.Task<TechFix.OrderServiceReference.SaveOrderResponse> SaveOrderAsync(TechFix.OrderServiceReference.SaveOrderRequest request);
+        
+        // CODEGEN: Generating message contract since element name AutoOrderIdResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AutoOrderId", ReplyAction="*")]
+        TechFix.OrderServiceReference.AutoOrderIdResponse AutoOrderId(TechFix.OrderServiceReference.AutoOrderIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AutoOrderId", ReplyAction="*")]
+        System.Threading.Tasks.Task<TechFix.OrderServiceReference.AutoOrderIdResponse> AutoOrderIdAsync(TechFix.OrderServiceReference.AutoOrderIdRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -84,6 +91,67 @@ namespace TechFix.OrderServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AutoOrderIdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AutoOrderId", Namespace="http://tempuri.org/", Order=0)]
+        public TechFix.OrderServiceReference.AutoOrderIdRequestBody Body;
+        
+        public AutoOrderIdRequest() {
+        }
+        
+        public AutoOrderIdRequest(TechFix.OrderServiceReference.AutoOrderIdRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class AutoOrderIdRequestBody {
+        
+        public AutoOrderIdRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AutoOrderIdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AutoOrderIdResponse", Namespace="http://tempuri.org/", Order=0)]
+        public TechFix.OrderServiceReference.AutoOrderIdResponseBody Body;
+        
+        public AutoOrderIdResponse() {
+        }
+        
+        public AutoOrderIdResponse(TechFix.OrderServiceReference.AutoOrderIdResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AutoOrderIdResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string AutoOrderIdResult;
+        
+        public AutoOrderIdResponseBody() {
+        }
+        
+        public AutoOrderIdResponseBody(string AutoOrderIdResult) {
+            this.AutoOrderIdResult = AutoOrderIdResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface OrderWebServiceSoapChannel : TechFix.OrderServiceReference.OrderWebServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -132,6 +200,29 @@ namespace TechFix.OrderServiceReference {
             TechFix.OrderServiceReference.SaveOrderRequest inValue = new TechFix.OrderServiceReference.SaveOrderRequest();
             inValue.Body = new TechFix.OrderServiceReference.SaveOrderRequestBody();
             return ((TechFix.OrderServiceReference.OrderWebServiceSoap)(this)).SaveOrderAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        TechFix.OrderServiceReference.AutoOrderIdResponse TechFix.OrderServiceReference.OrderWebServiceSoap.AutoOrderId(TechFix.OrderServiceReference.AutoOrderIdRequest request) {
+            return base.Channel.AutoOrderId(request);
+        }
+        
+        public string AutoOrderId() {
+            TechFix.OrderServiceReference.AutoOrderIdRequest inValue = new TechFix.OrderServiceReference.AutoOrderIdRequest();
+            inValue.Body = new TechFix.OrderServiceReference.AutoOrderIdRequestBody();
+            TechFix.OrderServiceReference.AutoOrderIdResponse retVal = ((TechFix.OrderServiceReference.OrderWebServiceSoap)(this)).AutoOrderId(inValue);
+            return retVal.Body.AutoOrderIdResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<TechFix.OrderServiceReference.AutoOrderIdResponse> TechFix.OrderServiceReference.OrderWebServiceSoap.AutoOrderIdAsync(TechFix.OrderServiceReference.AutoOrderIdRequest request) {
+            return base.Channel.AutoOrderIdAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<TechFix.OrderServiceReference.AutoOrderIdResponse> AutoOrderIdAsync() {
+            TechFix.OrderServiceReference.AutoOrderIdRequest inValue = new TechFix.OrderServiceReference.AutoOrderIdRequest();
+            inValue.Body = new TechFix.OrderServiceReference.AutoOrderIdRequestBody();
+            return ((TechFix.OrderServiceReference.OrderWebServiceSoap)(this)).AutoOrderIdAsync(inValue);
         }
     }
 }

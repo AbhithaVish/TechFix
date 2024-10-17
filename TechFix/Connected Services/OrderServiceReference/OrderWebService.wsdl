@@ -12,6 +12,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="AutoOrderId">
+        <s:complexType />
+      </s:element>
+      <s:element name="AutoOrderIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutoOrderIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="SaveOrderSoapIn">
@@ -20,10 +30,20 @@
   <wsdl:message name="SaveOrderSoapOut">
     <wsdl:part name="parameters" element="tns:SaveOrderResponse" />
   </wsdl:message>
+  <wsdl:message name="AutoOrderIdSoapIn">
+    <wsdl:part name="parameters" element="tns:AutoOrderId" />
+  </wsdl:message>
+  <wsdl:message name="AutoOrderIdSoapOut">
+    <wsdl:part name="parameters" element="tns:AutoOrderIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="OrderWebServiceSoap">
     <wsdl:operation name="SaveOrder">
       <wsdl:input message="tns:SaveOrderSoapIn" />
       <wsdl:output message="tns:SaveOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutoOrderId">
+      <wsdl:input message="tns:AutoOrderIdSoapIn" />
+      <wsdl:output message="tns:AutoOrderIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OrderWebServiceSoap" type="tns:OrderWebServiceSoap">
@@ -37,11 +57,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AutoOrderId">
+      <soap:operation soapAction="http://tempuri.org/AutoOrderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OrderWebServiceSoap12" type="tns:OrderWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="SaveOrder">
       <soap12:operation soapAction="http://tempuri.org/SaveOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutoOrderId">
+      <soap12:operation soapAction="http://tempuri.org/AutoOrderId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

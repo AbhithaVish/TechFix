@@ -55,12 +55,59 @@ namespace ClientWebApplication
         }
 
 
-
-        private string AutoOrderId()
+        [WebMethod]
+        public string AutoOrderId()
         {
-            // Logic to generate a new unique order ID
-            return "ORD" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            string OrderId = null;
+            try
+            {
+                using (var con = GetConnection())  
+                {
+                    con.Open();  // Open the connection
+
+                    SqlCommand cmd = new SqlCommand("SELECT MAX(OrderId) FROM OrderTable", con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    string id = "";
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            id = dr[0]?.ToString();
+                        }
+
+                        if (!string.IsNullOrEmpty(id))
+                        {
+                            string idString = id.Substring(2);  // Substring starts at index 2
+                            int CTR = int.Parse(idString);
+
+                            if (CTR < 9)
+                                OrderId = "OI00" + (CTR + 1);
+                            else if (CTR < 99)
+                                OrderId = "OI0" + (CTR + 1);
+                            else
+                                OrderId = "OI" + (CTR + 1);
+                        }
+                        else
+                        {
+                            OrderId = "OI001";
+                        }
+                    }
+                    else
+                    {
+                        OrderId = "OI001";
+                    }
+
+                    dr.Close();  // Close the reader properly
+                }
+            }
+            catch (Exception ex)
+            {
+                OrderId = "Error generating OrderId: " + ex.Message;
+            }
+            return OrderId;
         }
+
 
         // Clears the user's cart after order placement
         private void ClearCart()

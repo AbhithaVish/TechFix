@@ -2,14 +2,12 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
-using ClientWebApplication;  
 
 namespace TechFix
 {
     public partial class SupOrders : System.Web.UI.Page
     {
         private string connectionString = "data source=localhost\\SQLEXPRESS;initial catalog=TechFix3.0;Integrated Security=True";
-       // SupOrdersWebService orderService = new SupOrdersWebService();  // Initialize the correct web service
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,12 +25,13 @@ namespace TechFix
 
         private void LoadOrders()
         {
-            string username = Session["username"].ToString();  // Get the logged-in username
+            string username = Session["username"].ToString();  // Get the logged-in supplier's username
 
             using (var con = new SqlConnection(connectionString))
             {
                 con.Open();
-                string query = "SELECT OrderId, productName, productQty, username, price, status FROM OrderTable WHERE username = @username";
+                string query = "SELECT OrderId, productName, productQty, username, price, status " +
+                               "FROM OrderTable WHERE username = @username";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@username", username);
 
@@ -56,15 +55,89 @@ namespace TechFix
         {
             if (e.CommandName == "UpdateStatus")
             {
-                int orderId = Convert.ToInt32(e.CommandArgument);
-                DropDownList ddlStatus = (DropDownList)e.Item.FindControl("ddlStatus");
-                string newStatus = ddlStatus.SelectedValue;
+                string argument = e.CommandArgument.ToString();
 
-                // Call the web service to update the order status
-               // string result = orderService.UpdateOrderStatus(orderId, newStatus);
-               // lblText.Text = result;
+                if (int.TryParse(argument, out int orderId))
+                {
+                    DropDownList ddlStatus = (DropDownList)e.Item.FindControl("ddlStatus");
+                    string newStatus = ddlStatus.SelectedValue.Trim();  // Ensure nchar compatibility
 
-                LoadOrders();  // Reload orders to reflect status updates
+                    UpdateOrderStatus(orderId, newStatus);
+                    LoadOrders();  // Reload orders to reflect status updates
+                }
+                else
+                {
+                    lblText.Text = "Invalid order ID.";
+                }
+            }
+        }
+
+        private void UpdateOrderStatus(int orderId, string newStatus)
+        {
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (SqlTransaction transaction = con.BeginTransaction())
+                {
+                    try
+                    {
+                        // Update the order status
+                        string query = "UPDATE OrderTable SET status = @status WHERE OrderId = @orderId";
+                        SqlCommand cmd = new SqlCommand(query, con, transaction);
+                        cmd.Parameters.AddWithValue("@status", newStatus.PadRight(50));  // Handle nchar(50)
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                        cmd.ExecuteNonQuery();
+
+                        // If the status is "Approved", reduce the product quantity
+                        if (newStatus == "Approved")
+                        {
+                            ReduceProductQuantity(orderId, con, transaction);
+                        }
+
+                        transaction.Commit();
+                        lblText.Text = "Status updated successfully.";
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        lblText.Text = "Error updating status: " + ex.Message;
+                    }
+                }
+            }
+        }
+
+        private void ReduceProductQuantity(int orderId, SqlConnection con, SqlTransaction transaction)
+        {
+            // Retrieve the product name, quantity, and username from OrderTable
+            string query = "SELECT productName, productQty, username FROM OrderTable WHERE OrderId = @orderId";
+            SqlCommand cmd = new SqlCommand(query, con, transaction);
+            cmd.Parameters.AddWithValue("@orderId", orderId);
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    string productName = reader["productName"].ToString();
+                    int orderQty = Convert.ToInt32(reader["productQty"]);
+                    string username = reader["username"].ToString();
+                    reader.Close();  // Close reader before updating
+
+                    // Update the quantity in ProductsTable for the specific supplier (username)
+                    string updateProductQuery = @"
+                        UPDATE ProductsTable 
+                        SET Qauntity = Qauntity - @orderQty 
+                        WHERE ItemName = @productName AND username = @username";
+                    SqlCommand updateCmd = new SqlCommand(updateProductQuery, con, transaction);
+                    updateCmd.Parameters.AddWithValue("@orderQty", orderQty);
+                    updateCmd.Parameters.AddWithValue("@productName", productName);
+                    updateCmd.Parameters.AddWithValue("@username", username);
+
+                    updateCmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    throw new Exception("Order not found.");
+                }
             }
         }
     }

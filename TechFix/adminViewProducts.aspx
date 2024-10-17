@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminViewProducts.aspx.cs" Inherits="TechFix.adminViewProducts" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>View Products - Admin</title>
@@ -30,7 +29,9 @@
                             </tr>
                             <tr>
                                 <td><label>Quantity Available:</label></td>
-                                <td><asp:TextBox ID="txtProductQty" runat="server" Text='<%# Eval("productQty") %>' ReadOnly="true" CssClass="product-input" /></td>
+                                <td>
+                                    <asp:TextBox ID="txtProductQty" runat="server" Text='<%# Eval("productQty") %>' CssClass="product-input" />
+                                </td>
                             </tr>
                             <tr>
                                 <td><label>Category ID:</label></td>
@@ -50,6 +51,10 @@
                             <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart"
                                         CommandArgument='<%# Eval("productID") %>' CommandName="AddToCart"
                                         CssClass="add-to-cart" />
+                            <asp:TextBox ID="txtqty" runat="server"></asp:TextBox>
+                            <asp:Button ID="btnUpdateQty" runat="server" Text="Update Qty"
+                                        CommandArgument='<%# Eval("productID") %>' CommandName="UpdateQty"
+                                        CssClass="update-qty" />
                         </div>
                     </div>
                     <hr />

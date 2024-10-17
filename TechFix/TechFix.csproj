@@ -91,6 +91,7 @@
   <ItemGroup>
     <Content Include="addcategories.aspx" />
     <Content Include="AdminHome.aspx" />
+    <Content Include="adminManageProducts.aspx" />
     <Content Include="adminStyles.css" />
     <Content Include="adminViewProducts.aspx" />
     <Content Include="cart.aspx" />
@@ -116,6 +117,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\OrderServiceReference\TechFix.OrderServiceReference.AutoOrderIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\SupOrderServiceReference\CategoryWebService.disco" />
     <None Include="Connected Services\SupOrderServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\SupOrderServiceReference\configuration.svcinfo" />
@@ -149,6 +153,13 @@
     </Compile>
     <Compile Include="AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManageProducts.aspx.cs">
+      <DependentUpon>adminManageProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManageProducts.aspx.designer.cs">
+      <DependentUpon>adminManageProducts.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminViewProducts.aspx.cs">
       <DependentUpon>adminViewProducts.aspx</DependentUpon>
