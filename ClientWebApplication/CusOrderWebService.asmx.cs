@@ -1,13 +1,21 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
 using System.Web.Services;
 
 namespace ClientWebApplication
 {
+    /// <summary>
+    /// Summary description for CusOrderWebService
+    /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    public class OrderWebService : WebService
+    [System.ComponentModel.ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+    // [System.Web.Script.Services.ScriptService]
+    public class CusOrderWebService : System.Web.Services.WebService
     {
         private SqlConnection GetConnection()
         {
@@ -30,9 +38,9 @@ namespace ClientWebApplication
 
                     // Insert order using the username from CartTable
                     SqlCommand cmd = new SqlCommand(
-                        "INSERT INTO OrderTable (OrderId, productName, productQty, price, username, status) " +
+                        "INSERT INTO CusOrderTable (OrderId, productName, productQty, price, username, status) " +
                         "SELECT @OrderId, productName, productQty, (productQty * price), username, 'Pending' " +
-                        "FROM CartTable WHERE productQty > 0", con);
+                        "FROM Quotation WHERE productQty > 0", con);
 
                     cmd.Parameters.AddWithValue("@OrderId", orderId);
 
@@ -61,11 +69,11 @@ namespace ClientWebApplication
             string OrderId = null;
             try
             {
-                using (var con = GetConnection())  
+                using (var con = GetConnection())
                 {
                     con.Open();  // Open the connection
 
-                    SqlCommand cmd = new SqlCommand("SELECT MAX(OrderId) FROM OrderTable", con);
+                    SqlCommand cmd = new SqlCommand("SELECT MAX(OrderId) FROM CusOrderTable", con);
                     SqlDataReader dr = cmd.ExecuteReader();
                     string id = "";
 
@@ -118,7 +126,7 @@ namespace ClientWebApplication
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(
-                    "DELETE FROM CartTable WHERE productQty = 0", con); // Clear all items from the cart
+                    "DELETE FROM Quotation WHERE productQty = 0", con); // Clear all items from the cart
                 cmd.ExecuteNonQuery();
             }
         }

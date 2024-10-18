@@ -89,13 +89,44 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="addcategories.aspx" />
-    <Content Include="AdminHome.aspx" />
-    <Content Include="adminManageProducts.aspx" />
-    <Content Include="adminStyles.css" />
-    <Content Include="adminViewProducts.aspx" />
-    <Content Include="cart.aspx" />
-    <Content Include="Categories.aspx" />
+    <Content Include="Admin\addcategories.aspx" />
+    <None Include="Connected Services\AdminAddProductsServiceReference\AdminAddProductsWebService.wsdl" />
+    <None Include="Connected Services\AdminOrdersServiceReference\AdminOrdersWebService.wsdl" />
+    <Content Include="Admin\customers.aspx" />
+    <Content Include="Admin\Suppliers.aspx" />
+    <Content Include="CSS\CartStyle.css" />
+    <Content Include="Admin\CusOrders.aspx" />
+    <None Include="Connected Services\AdminAddProductsServiceReference\AdminAddProductsWebService.disco" />
+    <None Include="Connected Services\AdminAddProductsServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\AdminAddProductsServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\AdminAddProductsServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\AdminOrdersServiceReference\TechFix.AdminOrdersServiceReference.UpdateOrderStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CusOrderServiceReference\CusOrderWebService.disco" />
+    <None Include="Connected Services\CusOrderServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\CusOrderServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\CusOrderServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Admin\adminAddProducts.aspx" />
+    <None Include="Connected Services\AdminOrdersServiceReference\AdminOrdersWebService.disco" />
+    <None Include="Connected Services\AdminOrdersServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\AdminOrdersServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\AdminOrdersServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="CSS\AddCategories.css" />
+    <Content Include="Admin\AdminHome.aspx" />
+    <Content Include="Admin\adminManageProducts.aspx" />
+    <Content Include="Admin\adminViewProducts.aspx" />
+    <Content Include="Admin\cart.aspx" />
+    <Content Include="Admin\Categories.aspx" />
     <None Include="Connected Services\CategoryServiceReference\CategoryWebService.disco" />
     <None Include="Connected Services\CategoryServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\CategoryServiceReference\configuration.svcinfo" />
@@ -103,6 +134,17 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\CusloginServiceReference\CusLoginWebService.wsdl" />
+    <Content Include="Connected Services\CusloginServiceReference\TechFix.CusloginServiceReference.ValidateUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CusOrderServiceReference\CusOrderWebService.wsdl" />
+    <Content Include="Connected Services\CusOrderServiceReference\TechFix.CusOrderServiceReference.AutoOrderIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CusOrderServiceReference\TechFix.CusOrderServiceReference.SaveOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\loginServiceReference\loginWebService.disco" />
     <None Include="Connected Services\loginServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\loginServiceReference\configuration.svcinfo" />
@@ -117,6 +159,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\CusloginServiceReference\CusLoginWebService.disco" />
+    <None Include="Connected Services\CusloginServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\CusloginServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\CusloginServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\OrderServiceReference\TechFix.OrderServiceReference.AutoOrderIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -127,62 +176,119 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="CSS\CustomerNav.css" />
+    <Content Include="CSS\OrdersStyle.css" />
+    <Content Include="Customer\CusHome.aspx" />
+    <Content Include="CusLogin.aspx" />
+    <Content Include="Customer\CusOrders.aspx" />
+    <Content Include="Customer\CusProducts.aspx" />
+    <Content Include="Customer\Quotation.aspx" />
     <Content Include="LoginForm.aspx" />
-    <Content Include="orders.aspx" />
-    <Content Include="ProductAdd.css" />
-    <Content Include="ProductView.css" />
-    <Content Include="StyleSheet.css" />
-    <Content Include="SupOrders.aspx" />
-    <Content Include="SupplerHome.aspx" />
-    <Content Include="supplierAddProducts.aspx" />
+    <Content Include="CSS\ManageProducts.css" />
+    <Content Include="CSS\NavBar.css" />
+    <Content Include="Admin\orders.aspx" />
+    <Content Include="CSS\ProductAdd.css" />
+    <Content Include="CSS\ProductView.css" />
+    <Content Include="CSS\StyleSheet.css" />
+    <Content Include="Supplier\SupOrders.aspx" />
+    <Content Include="Supplier\SupplerHome.aspx" />
+    <Content Include="Supplier\supplierAddProducts.aspx" />
     <Content Include="SupplierLogin.aspx" />
-    <Content Include="SupplierViewProducts.aspx" />
+    <Content Include="Supplier\SupplierViewProducts.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addcategories.aspx.cs">
+    <Compile Include="Admin\addcategories.aspx.cs">
       <DependentUpon>addcategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="addcategories.aspx.designer.cs">
+    <Compile Include="Admin\addcategories.aspx.designer.cs">
       <DependentUpon>addcategories.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminHome.aspx.cs">
+    <Compile Include="Admin\adminAddProducts.aspx.cs">
+      <DependentUpon>adminAddProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\adminAddProducts.aspx.designer.cs">
+      <DependentUpon>adminAddProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminHome.aspx.designer.cs">
+    <Compile Include="Admin\AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminManageProducts.aspx.cs">
+    <Compile Include="Admin\adminManageProducts.aspx.cs">
       <DependentUpon>adminManageProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminManageProducts.aspx.designer.cs">
+    <Compile Include="Admin\adminManageProducts.aspx.designer.cs">
       <DependentUpon>adminManageProducts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminViewProducts.aspx.cs">
+    <Compile Include="Admin\adminViewProducts.aspx.cs">
       <DependentUpon>adminViewProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminViewProducts.aspx.designer.cs">
+    <Compile Include="Admin\adminViewProducts.aspx.designer.cs">
       <DependentUpon>adminViewProducts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="cart.aspx.cs">
+    <Compile Include="Admin\cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="cart.aspx.designer.cs">
+    <Compile Include="Admin\cart.aspx.designer.cs">
       <DependentUpon>cart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Categories.aspx.cs">
+    <Compile Include="Admin\Categories.aspx.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Categories.aspx.designer.cs">
+    <Compile Include="Admin\Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\customers.aspx.cs">
+      <DependentUpon>customers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\customers.aspx.designer.cs">
+      <DependentUpon>customers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CusOrders.aspx.cs">
+      <DependentUpon>CusOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CusOrders.aspx.designer.cs">
+      <DependentUpon>CusOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Suppliers.aspx.cs">
+      <DependentUpon>Suppliers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Suppliers.aspx.designer.cs">
+      <DependentUpon>Suppliers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\AdminAddProductsServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\AdminOrdersServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\CategoryServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CusloginServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CusOrderServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -202,6 +308,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Customer\CusHome.aspx.cs">
+      <DependentUpon>CusHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome.aspx.designer.cs">
+      <DependentUpon>CusHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CusLogin.aspx.cs">
+      <DependentUpon>CusLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CusLogin.aspx.designer.cs">
+      <DependentUpon>CusLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusOrders.aspx.cs">
+      <DependentUpon>CusOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusOrders.aspx.designer.cs">
+      <DependentUpon>CusOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusProducts.aspx.cs">
+      <DependentUpon>CusProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusProducts.aspx.designer.cs">
+      <DependentUpon>CusProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Quotation.aspx.cs">
+      <DependentUpon>Quotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Quotation.aspx.designer.cs">
+      <DependentUpon>Quotation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.aspx.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -209,33 +350,33 @@
     <Compile Include="LoginForm.aspx.designer.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="orders.aspx.cs">
+    <Compile Include="Admin\orders.aspx.cs">
       <DependentUpon>orders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="orders.aspx.designer.cs">
+    <Compile Include="Admin\orders.aspx.designer.cs">
       <DependentUpon>orders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SupOrders.aspx.cs">
+    <Compile Include="Supplier\SupOrders.aspx.cs">
       <DependentUpon>SupOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SupOrders.aspx.designer.cs">
+    <Compile Include="Supplier\SupOrders.aspx.designer.cs">
       <DependentUpon>SupOrders.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SupplerHome.aspx.cs">
+    <Compile Include="Supplier\SupplerHome.aspx.cs">
       <DependentUpon>SupplerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SupplerHome.aspx.designer.cs">
+    <Compile Include="Supplier\SupplerHome.aspx.designer.cs">
       <DependentUpon>SupplerHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="supplierAddProducts.aspx.cs">
+    <Compile Include="Supplier\supplierAddProducts.aspx.cs">
       <DependentUpon>supplierAddProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="supplierAddProducts.aspx.designer.cs">
+    <Compile Include="Supplier\supplierAddProducts.aspx.designer.cs">
       <DependentUpon>supplierAddProducts.aspx</DependentUpon>
     </Compile>
     <Compile Include="SupplierLogin.aspx.cs">
@@ -245,11 +386,11 @@
     <Compile Include="SupplierLogin.aspx.designer.cs">
       <DependentUpon>SupplierLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SupplierViewProducts.aspx.cs">
+    <Compile Include="Supplier\SupplierViewProducts.aspx.cs">
       <DependentUpon>SupplierViewProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SupplierViewProducts.aspx.designer.cs">
+    <Compile Include="Supplier\SupplierViewProducts.aspx.designer.cs">
       <DependentUpon>SupplierViewProducts.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -277,6 +418,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -285,13 +427,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AdminAddProductsServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\AdminOrdersServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\CategoryServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\CusloginServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\CusOrderServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\loginServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\OrderServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\SupOrderServiceReference\" />

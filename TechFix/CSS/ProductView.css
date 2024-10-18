@@ -1,0 +1,125 @@
+﻿.product-container {
+    /*    width: 80%;*/
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+    .product-container h1 {
+        text-align: center;
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+.product-item {
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    .product-item table {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .product-item td {
+        padding: 5px;
+        vertical-align: middle;
+    }
+
+.product-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* Product Actions */
+.product-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+    .add-to-cart:hover {
+        background-color: #45a049;
+    }
+
+.update-qty {
+    margin-left: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+    .update-qty:hover {
+        background-color: #;
+    }
+
+.txtqty {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* View Cart Button */
+.view-cart {
+    display: block;
+    margin: 20px auto;
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .view-cart:hover {
+        background-color: #008CBA;
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-container {
+        width: 95%;
+    }
+
+    .nav__menu {
+        flex-direction: column;
+    }
+
+    .nav__list {
+        flex-direction: column;
+    }
+
+    .nav__link, .login {
+        padding: 10px 15px;
+        margin: 5px 0;
+    }
+}

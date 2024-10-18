@@ -21,7 +21,7 @@ namespace TechFix
                 // Set the session and redirect to AdminHome if valid
                 Session["username"] = txtusername.Text;
                 lbltext.Text = "User Login Success";
-                Response.Redirect("AdminHome.aspx");
+                Response.Redirect("Admin/AdminHome.aspx");
             }
             else
             {

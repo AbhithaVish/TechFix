@@ -48,7 +48,7 @@ namespace TechFix
                 if (userCount > 0)
                 {
                     Session["username"] = txtusername.Text; // Store the username in the session
-                    Response.Redirect("SupplerHome.aspx");
+                    Response.Redirect("Supplier/SupplerHome.aspx");
                 }
                 else
                 {

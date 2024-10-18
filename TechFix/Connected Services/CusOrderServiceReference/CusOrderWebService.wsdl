@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SaveOrder">
+        <s:complexType />
+      </s:element>
+      <s:element name="SaveOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutoOrderId">
+        <s:complexType />
+      </s:element>
+      <s:element name="AutoOrderIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutoOrderIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SaveOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveOrder" />
+  </wsdl:message>
+  <wsdl:message name="SaveOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutoOrderIdSoapIn">
+    <wsdl:part name="parameters" element="tns:AutoOrderId" />
+  </wsdl:message>
+  <wsdl:message name="AutoOrderIdSoapOut">
+    <wsdl:part name="parameters" element="tns:AutoOrderIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CusOrderWebServiceSoap">
+    <wsdl:operation name="SaveOrder">
+      <wsdl:input message="tns:SaveOrderSoapIn" />
+      <wsdl:output message="tns:SaveOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutoOrderId">
+      <wsdl:input message="tns:AutoOrderIdSoapIn" />
+      <wsdl:output message="tns:AutoOrderIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CusOrderWebServiceSoap" type="tns:CusOrderWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveOrder">
+      <soap:operation soapAction="http://tempuri.org/SaveOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutoOrderId">
+      <soap:operation soapAction="http://tempuri.org/AutoOrderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CusOrderWebServiceSoap12" type="tns:CusOrderWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveOrder">
+      <soap12:operation soapAction="http://tempuri.org/SaveOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutoOrderId">
+      <soap12:operation soapAction="http://tempuri.org/AutoOrderId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CusOrderWebService">
+    <wsdl:port name="CusOrderWebServiceSoap" binding="tns:CusOrderWebServiceSoap">
+      <soap:address location="https://localhost:44377/CusOrderWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CusOrderWebServiceSoap12" binding="tns:CusOrderWebServiceSoap12">
+      <soap12:address location="https://localhost:44377/CusOrderWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

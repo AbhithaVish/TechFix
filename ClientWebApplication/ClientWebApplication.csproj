@@ -67,15 +67,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminAddProductsWebService.asmx" />
+    <Content Include="AdminOrdersWebService.asmx" />
     <Content Include="CategoryWebService.asmx" />
+    <Content Include="CusLoginWebService.asmx" />
+    <Content Include="CusOrderWebService.asmx" />
     <Content Include="loginWebService.asmx" />
     <Content Include="OrderWebService.asmx" />
     <Content Include="SupOrdersWebService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminAddProductsWebService.asmx.cs">
+      <DependentUpon>AdminAddProductsWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AdminOrdersWebService.asmx.cs">
+      <DependentUpon>AdminOrdersWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CategoryWebService.asmx.cs">
       <DependentUpon>CategoryWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CusLoginWebService.asmx.cs">
+      <DependentUpon>CusLoginWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CusOrderWebService.asmx.cs">
+      <DependentUpon>CusOrderWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="loginWebService.asmx.cs">

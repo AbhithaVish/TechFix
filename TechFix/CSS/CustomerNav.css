@@ -1,0 +1,76 @@
+﻿
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #e0f0f7;
+}
+
+.header {
+    background-color: #1b1f23;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav {
+    display: flex;
+    justify-content: center; /* Aligns items in the center horizontally */
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 2rem; /* Adjust spacing between left logo, menu, and logout button */
+}
+
+/* Optional: Logo Alignment (if you plan to add one) */
+.nav__logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto; /* Pushes logo to the left */
+}
+
+/* Menu List */
+.nav__menu {
+    display: flex;
+    justify-content: center; /* Centers menu items */
+    align-items: center;
+    flex-grow: 1;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Links and Buttons */
+.nav__link {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+    .nav__link:hover {
+        color: #00bcd4;
+    }
+
+/* Login Button */
+.login {
+    background-color: #00bcd4;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-left: auto; /* Pushes login button to the far right */
+}
+
+    .login:hover {
+        background-color: #0097a7;
+    }

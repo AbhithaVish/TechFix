@@ -1,0 +1,130 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.content {
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* GridView container styles */
+.gridview-container {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+    .gridview-container th,
+    .gridview-container td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .gridview-container th {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .gridview-container tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .gridview-container tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Edit and Cancel Buttons */
+    .gridview-container .edit-link,
+    .gridview-container .cancel-link {
+        padding: 6px 12px;
+        border-radius: 3px;
+        font-size: 14px;
+        text-decoration: none;
+        color: white;
+        display: inline-block;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    /* Edit button as blue */
+    .gridview-container .edit-link {
+        background-color: #007bff;
+        border: none;
+    }
+
+        .gridview-container .edit-link:hover {
+            background-color: #0056b3;
+        }
+
+    /* Cancel button as red */
+    .gridview-container .cancel-link {
+        background-color: #dc3545;
+        border: none;
+    }
+
+        .gridview-container .cancel-link:hover {
+            background-color: #c82333;
+        }
+
+    /* Editable TextBox styles */
+    .gridview-container input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Delete Button */
+    .gridview-container .delete-link {
+        background-color: #dc3545; /* Red like the cancel button */
+        color: white;
+        padding: 6px 12px;
+        border-radius: 3px;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        border: none;
+    }
+
+        .gridview-container .delete-link:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .gridview-container th,
+    .gridview-container td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
