@@ -23,7 +23,10 @@
          </tr>
      </table>
      <div >
+         <br />
          <asp:Button ID="btnlogin" runat="server" Text="Log in" class="btn" OnClick="btnlogin_Click" />
+         <br />
+         <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" class="btn" OnClick="btnSignUp_Click"  />
      </div>
      
  </div>

@@ -113,7 +113,6 @@ namespace TechFix.Admin
             SuppliersGridView.EditIndex = -1;
             BindSuppliersData(); // Refresh data
         }
-
         protected void btndash_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminHome.aspx");
@@ -157,6 +156,11 @@ namespace TechFix.Admin
         protected void Button4_Click(object sender, EventArgs e)
         {
             Response.Redirect("CusOrders.aspx");
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminAddProducts.aspx");
         }
     }
 }

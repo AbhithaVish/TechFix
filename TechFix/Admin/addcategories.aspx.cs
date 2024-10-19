@@ -46,6 +46,7 @@ namespace TechFix
             }
         }
 
+
         protected void btndash_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminHome.aspx");
@@ -90,5 +91,11 @@ namespace TechFix
         {
             Response.Redirect("CusOrders.aspx");
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("addcategories.aspx");
+        }
+
     }
-    }
+ }

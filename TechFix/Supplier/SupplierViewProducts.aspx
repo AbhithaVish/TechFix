@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>View Products - Supplier</title>
+    <link href="../CSS/SupplierStyle.css" rel="stylesheet" />
     <link href="../CSS/ManageProducts.css" rel="stylesheet" />
     <style>
         .content{
@@ -14,8 +15,25 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-           <h1>Manage Products</h1>
+         <div>
+        <header class="header">
+            <nav class="nav container">
+                <div class="nav__menu">
+                    <ul class="nav__list">
+                        <li><asp:Button ID="btnDashboard" runat="server" class="nav__link" Text="Dashboard" OnClick="btnDashboard_Click"/> </li>
+ <li><asp:Button ID="btnAddProducts" runat="server" class="nav__link" Text="Add Products" OnClick="btnAddProducts_Click1"   /> </li>
+ <li> <asp:Button ID="btnviewProducts" runat="server" class="nav__link" Text="View Products" OnClick="btnviewProducts_Click"   /></li>
+ <li><asp:Button ID="btnOrders" runat="server" class="nav__link" Text="Orders" OnClick="btnOrders_Click"/>  </li>
+
+<li>
+    <asp:Button ID="btnLogout" runat="server" class="login" Text="Log Out" OnClick="btnLogout_Click"/>
+</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+             <div>
+                                                  <h1>Manage Products</h1>
                 <asp:GridView ID="ProductsGridView" runat="server" CssClass="gridview-container" AutoGenerateColumns="False" DataKeyNames="productID"
                               OnRowEditing="ProductsGridView_RowEditing"
                               OnRowUpdating="ProductsGridView_RowUpdating"
@@ -80,7 +98,8 @@
 
                     </Columns>
                 </asp:GridView>
-        </div>
+             </div>
+    </div>
     </form>
 </body>
 </html>

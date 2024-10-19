@@ -167,5 +167,10 @@ namespace ClientWebApplication
         {
             Response.Redirect("CusOrders.aspx");
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminAddProducts.aspx");
+        }
     }
 }

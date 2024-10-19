@@ -1,0 +1,99 @@
+﻿/* General container for the form and navigation */
+.container {
+    max-width: 900px; /* Set a max width for the whole container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
+}
+
+/* Navigation Bar styles */
+.header {
+    background-color: #3498db; /* Navigation background color */
+    padding: 15px; /* Space inside the navigation */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav__list {
+    display: flex;
+    gap: 20px;
+}
+
+.nav__link {
+    background-color: transparent; /* No background for nav buttons */
+    border: none; /* Remove border */
+    color: white; /* White text color */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+    .nav__link:hover {
+        text-decoration: underline; /* Add underline on hover */
+    }
+
+/* Form container styles */
+.form-container {
+    background-color: white; /* White background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Spacing inside the form */
+    max-width: 500px; /* Limit the width of the form */
+    margin: 30px auto; /* Center the form with space from the nav */
+}
+
+/* Label styles */
+label {
+    font-weight: bold; /* Bold text for labels */
+    display: block; /* Make labels block elements for better alignment */
+    margin-bottom: 5px; /* Spacing below labels */
+}
+
+/* TextBox styles */
+asp\:TextBox {
+    width: 100%; /* Full width for input fields */
+    padding: 10px; /* Padding inside input fields */
+    margin-bottom: 15px; /* Space below each input */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded borders */
+    font-size: 16px; /* Increase font size for better readability */
+}
+
+/* DropDownList styles */
+asp\:DropDownList {
+    width: 100%; /* Full width for dropdown */
+    padding: 10px; /* Padding inside dropdown */
+    margin-bottom: 15px; /* Space below dropdown */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded borders */
+    font-size: 16px; /* Increase font size */
+}
+
+/* Button styles */
+asp\:Button {
+    background-color: #3498db; /* Primary color for button */
+    color: white; /* White text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding inside button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    font-size: 16px; /* Increase font size */
+}
+
+    asp\:Button:hover {
+        background-color: #2980b9; /* Darker shade on hover */
+    }
+
+/* Label for messages */
+asp\:Label {
+    margin-top: 15px; /* Space above the label for messages */
+    font-weight: bold; /* Bold text for messages */
+    display: block; /* Make it a block element */
+}

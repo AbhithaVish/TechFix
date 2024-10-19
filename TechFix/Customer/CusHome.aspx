@@ -19,9 +19,10 @@
                          <li><asp:Button ID="btnOrder" runat="server" class="nav__link" Text="Orders" OnClick="btnOrder_Click" /></li>
                          <li><asp:Button ID="btnCart" runat="server" class="nav__link" Text="Cart" OnClick="btnCart_Click" />  </li>
                          <li> <asp:Button ID="btncate" runat="server" class="nav__link" Text="Categories"   /></li>
-                         <li> <asp:Button ID="btnPro" runat="server" class="nav__link" Text="Profile"  /> </li>
 
-                        <li> <a href="CusLogin.aspx" class="login" id="loginbutton">Log Out</a> </li>
+                       <li>
+                            <asp:Button ID="btnLogout" runat="server" class="login" Text="Log Out" OnClick="btnLogout_Click" />
+                        </li>
                     </ul>
                 </div>
             </nav>

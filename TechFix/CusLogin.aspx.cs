@@ -37,5 +37,10 @@ namespace TechFix
                 }
             
         }
+
+        protected void btnSignUp_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Register.aspx");
+        }
     }
 }

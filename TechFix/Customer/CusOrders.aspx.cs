@@ -86,5 +86,10 @@ namespace TechFix.Customer
         {
             Response.Redirect("Quotation.aspx");
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../CusLogin.aspx");
+        }
     }
 }

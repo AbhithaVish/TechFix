@@ -159,24 +159,54 @@ namespace TechFix.Admin
 
 
 
-        protected void btndash_Click(object sender, EventArgs e) => Response.Redirect("AdminHome.aspx");
+        protected void btndash_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminHome.aspx");
+        }
 
-        protected void btnSup_Click(object sender, EventArgs e) => Response.Redirect("Suppliers.aspx");
+        protected void btnSup_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Suppliers.aspx");
+        }
 
-        protected void btnStocks_Click(object sender, EventArgs e) => Response.Redirect("adminManageProducts.aspx");
+        protected void btnStocks_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminManageProducts.aspx");
+        }
 
-        protected void Button2_Click(object sender, EventArgs e) => Response.Redirect("cart.aspx");
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("cart.aspx");
+        }
 
-        protected void btnOrders_Click(object sender, EventArgs e) => Response.Redirect("orders.aspx");
+        protected void btnOrders_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("orders.aspx");
+        }
 
-        protected void btnCUs_Click(object sender, EventArgs e) => Response.Redirect("customers.aspx");
+        protected void btnCUs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("customers.aspx");
+        }
 
-        protected void Button1_Click(object sender, EventArgs e) => Response.Redirect("addcategories.aspx");
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("addcategories.aspx");
+        }
 
-        protected void Button3_Click(object sender, EventArgs e) => Response.Redirect("adminViewProducts.aspx");
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminViewProducts.aspx");
+        }
 
-        protected void Button4_Click(object sender, EventArgs e) => Response.Redirect("CusOrders.aspx");
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CusOrders.aspx");
+        }
 
-        protected void Button5_Click(object sender, EventArgs e) => Response.Redirect("adminAddProducts.aspx");
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminAddProducts.aspx");
+        }
     }
 }

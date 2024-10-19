@@ -19,7 +19,7 @@ namespace TechFix
                 }
                 else
                 {
-                    Response.Redirect("SupplierLogin.aspx"); // Redirect to login if not logged in
+                    Response.Redirect("../SupplierLogin.aspx"); // Redirect to login if not logged in
                 }
             }
         }
@@ -37,6 +37,16 @@ namespace TechFix
         protected void btnOrders_Click(object sender, EventArgs e)
         {
             Response.Redirect("SupOrders.aspx");
+        }
+
+        protected void btnDashboard_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SupplerHome.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../SupplierLogin.aspx");
         }
     }
 }

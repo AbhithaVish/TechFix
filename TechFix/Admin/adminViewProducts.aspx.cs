@@ -201,6 +201,11 @@ namespace TechFix
         {
             Response.Redirect("CusOrders.aspx");
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminAddProducts.aspx");
+        }
         protected void Page_Unload(object sender, EventArgs e)
         {
             // Close the connection when the page is unloaded

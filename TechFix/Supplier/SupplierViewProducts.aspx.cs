@@ -126,5 +126,30 @@ namespace TechFix
             BindProductData();
 
         }
+
+        protected void btnAddProducts_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("supplierAddProducts.aspx");
+        }
+
+        protected void btnviewProducts_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SupplierViewProducts.aspx");
+        }
+
+        protected void btnOrders_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SupOrders.aspx");
+        }
+
+        protected void btnDashboard_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SupplerHome.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../SupplierLogin.aspx");
+        }
     }
-    }
+ }

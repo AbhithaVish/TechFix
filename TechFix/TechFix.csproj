@@ -178,11 +178,14 @@
     </None>
     <Content Include="CSS\CustomerNav.css" />
     <Content Include="CSS\OrdersStyle.css" />
+    <Content Include="CSS\SupplierAddProducts.css" />
+    <Content Include="CSS\SupplierStyle.css" />
     <Content Include="Customer\CusHome.aspx" />
     <Content Include="CusLogin.aspx" />
     <Content Include="Customer\CusOrders.aspx" />
     <Content Include="Customer\CusProducts.aspx" />
     <Content Include="Customer\Quotation.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="LoginForm.aspx" />
     <Content Include="CSS\ManageProducts.css" />
     <Content Include="CSS\NavBar.css" />
@@ -343,6 +346,13 @@
     <Compile Include="Customer\Quotation.aspx.designer.cs">
       <DependentUpon>Quotation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.aspx.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -426,9 +436,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

@@ -155,14 +155,14 @@ namespace TechFix.Customer
             Response.Redirect("CusOrders.aspx");
         }
 
-        protected void btnCart_Click123(object sender, EventArgs e)
+        protected void btnCart_Click(object sender, EventArgs e)
         {
             Response.Redirect("Quotation.aspx");
         }
 
-        protected void btnViewCart_Click(object sender, EventArgs e)
+        protected void btnLogout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Quotation.aspx");
+            Response.Redirect("../CusLogin.aspx");
         }
     }
 }
